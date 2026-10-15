@@ -71,8 +71,8 @@
         "code": "<PageHeaderMeta>\n  <Badge variant=\"outline\">Platform</Badge>\n</PageHeaderMeta>\n"
       },
       {
-        "title": "Tabs switching the panels of the section under the header",
-        "code": "<PageHeaderMeta>\n  <Tabs defaultValue=\"summary\">\n    <TabsList variant=\"line\" aria-label=\"Overview sections\">\n      <TabsTrigger value=\"summary\">Summary</TabsTrigger>\n      <TabsTrigger value=\"delivery\">Delivery</TabsTrigger>\n    </TabsList>\n  </Tabs>\n</PageHeaderMeta>\n"
+        "title": "A tab list beside the title, inside the Tabs that also holds the panels it switches",
+        "code": "<Tabs defaultValue=\"summary\">\n  <PageHeader>\n    <PageHeaderContent>\n      <PageHeaderTitle render={<h2 />}>Overview</PageHeaderTitle>\n      <PageHeaderMeta>\n        <TabsList variant=\"line\" aria-label=\"Overview sections\">\n          <TabsTrigger value=\"summary\">Summary</TabsTrigger>\n          <TabsTrigger value=\"delivery\">Delivery</TabsTrigger>\n        </TabsList>\n      </PageHeaderMeta>\n    </PageHeaderContent>\n  </PageHeader>\n  <TabsContent value=\"summary\">Summary panel</TabsContent>\n  <TabsContent value=\"delivery\">Delivery panel</TabsContent>\n</Tabs>\n"
       }
     ],
     "bad": [

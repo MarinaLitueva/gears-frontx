@@ -1,15 +1,16 @@
 /*
- * PageHeader styles - the Studio catalogue's page header (Studio patterns /
- * Search and page anatomy / Page Headers) and its uses in the Studio
- * prototype, on theme.css variables only, plus the one consumer hook,
- * --page-header-inset.
+ * PageHeader styles - a layout frame for the header of a page or a section:
+ * a leading control, a text block and an actions row, on theme.css
+ * variables only, plus the one consumer hook, --page-header-inset.
  */
 
 /*
  * The header is a wrapping row: the leading control, the text block and the
  * actions sit on one line wherever they fit, and the narrow layout at the
  * end of this file breaks the actions onto a line of their own. The text
- * block grows from zero (flex: 1 1 0%), so on a wide header nothing wraps.
+ * block grows from zero (flex: 1 1 0), so on a wide header nothing wraps.
+ * The 4 above and below keeps a header whose content outgrows the minimum
+ * height off its edges; within the minimum heights it changes nothing.
  */
 .pageHeader {
   --_page-header-inset: var(--page-header-inset, var(--space-6));
@@ -21,6 +22,7 @@
   align-items: center;
   column-gap: var(--space-4);
   min-width: 0;
+  padding-block: var(--space-1);
   padding-inline: var(--_page-header-inset);
   border-bottom: var(--border-width) solid var(--border);
   color: var(--foreground);
@@ -57,8 +59,8 @@
   display: grid;
   flex: 1 1 0;
   min-width: 0;
-  grid-template-areas: "eyebrow eyebrow" "title meta" "description description";
-  grid-template-columns: minmax(0, max-content) minmax(0, max-content);
+  grid-template-areas: "eyebrow eyebrow eyebrow" "title meta ." "description description description";
+  grid-template-columns: minmax(0, max-content) minmax(0, max-content) minmax(0, 1fr);
   align-items: center;
   column-gap: var(--space-5);
 }
@@ -85,6 +87,12 @@
 .pageHeaderEyebrow a:hover {
   color: var(--link-foreground);
   text-decoration: underline;
+}
+
+.pageHeaderEyebrow a:focus-visible {
+  outline: var(--border-width-focus) solid var(--ring);
+  outline-offset: calc(-1 * var(--border-width-focus));
+  border-radius: var(--radius-xs);
 }
 
 .pageHeaderTitle {

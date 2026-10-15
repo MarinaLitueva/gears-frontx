@@ -62,16 +62,23 @@ examples:
         <PageHeaderMeta>
           <Badge variant="outline">Platform</Badge>
         </PageHeaderMeta>
-    - title: Tabs switching the panels of the section under the header
+    - title: A tab list beside the title, inside the Tabs that also holds the panels it switches
       code: |
-        <PageHeaderMeta>
-          <Tabs defaultValue="summary">
-            <TabsList variant="line" aria-label="Overview sections">
-              <TabsTrigger value="summary">Summary</TabsTrigger>
-              <TabsTrigger value="delivery">Delivery</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </PageHeaderMeta>
+        <Tabs defaultValue="summary">
+          <PageHeader>
+            <PageHeaderContent>
+              <PageHeaderTitle render={<h2 />}>Overview</PageHeaderTitle>
+              <PageHeaderMeta>
+                <TabsList variant="line" aria-label="Overview sections">
+                  <TabsTrigger value="summary">Summary</TabsTrigger>
+                  <TabsTrigger value="delivery">Delivery</TabsTrigger>
+                </TabsList>
+              </PageHeaderMeta>
+            </PageHeaderContent>
+          </PageHeader>
+          <TabsContent value="summary">Summary panel</TabsContent>
+          <TabsContent value="delivery">Delivery panel</TabsContent>
+        </Tabs>
   bad:
     - title: A sentence set beside the title
       code: |

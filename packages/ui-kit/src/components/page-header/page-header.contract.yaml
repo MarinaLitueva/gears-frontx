@@ -58,7 +58,8 @@ invariants:
     text: >-
       `size` sets the root's minimum height, the rule included - 56 for
       `sm`, 64 for `default`, 80 for `lg` - and the root grows past it when
-      its content wraps.
+      its content outgrows it, keeping var(--space-1) above and below its
+      content.
   - id: narrow-layout-follows-the-header-width
     text: >-
       When the root's width inside its side insets is below 64rem - read by
@@ -66,7 +67,8 @@ invariants:
       both insets outside them - the content beside the title moves under
       the description, the actions take a line of their own, the leading
       control stays on the first line beside the text, and each line keeps
-      var(--space-2) above and below it.
+      var(--space-2) above and below it, on top of the root's own
+      var(--space-1).
 
 anti_patterns:
   - dont: Render the page header outside the page's main element as it is

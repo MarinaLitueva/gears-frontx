@@ -9,10 +9,10 @@ import styles from './page-header.module.css';
 
 /*
  * PageHeader has no Base UI primitive and no shadcn/ui counterpart: it is
- * the kit's drawing of the Studio catalogue's page header (Studio patterns
- * / Search and page anatomy / Page Headers) and of the slots the Studio
- * prototype fills in it - a control before the text, a line above the
- * title, content beside it, a description under it and actions at the end.
+ * the kit's own layout frame for the header of a page or a section - a
+ * control before the text, a line above the title, content beside it, a
+ * description under it and actions at the end. The frame lays out what the
+ * application puts in those slots and renders no other kit component.
  * Plain styled elements, the same shape as Card and Empty (see card.tsx).
  * No `data-slot` attributes, per the kit-wide convention.
  *

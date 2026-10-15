@@ -131,8 +131,8 @@ describe('PageHeader', () => {
 });
 
 /*
- * The drawn geometry of the Studio catalogue's page header, pinned against
- * the stylesheet: jsdom lays nothing out, so the declarations are what a
+ * The drawn geometry of the page header, pinned against the stylesheet:
+ * jsdom lays nothing out, so the declarations are what a
  * test can hold. Each assertion is one a plausible edit would break - a
  * rule dropped instead of hidden, a gap "corrected" to one value on both
  * sides of the content, a metric taken off the type ramp.
@@ -199,11 +199,28 @@ describe('PageHeader drawn geometry', () => {
     expect(declared(wide, '.pageHeaderDescription', 'margin-top')).toBe('var(--space-1)');
   });
 
-  it('sizes both columns to their content, so a short meta keeps its width beside a long title', () => {
+  it('sizes the title and meta columns to their content and gives the rest of the row to a flexible column', () => {
     // A 1fr column for the meta collapses to zero beside a title wider than
-    // the row, and its content then paints over the actions.
+    // the row, and its content then paints over the actions. Without the
+    // flexible third column, an eyebrow or a description wider than the
+    // title and the meta widens their columns and moves the meta away from
+    // the title.
     expect(declared(wide, '.pageHeaderContent', 'grid-template-columns')).toBe(
-      'minmax(0, max-content) minmax(0, max-content)',
+      'minmax(0, max-content) minmax(0, max-content) minmax(0, 1fr)',
+    );
+  });
+
+  it('keeps 4 above and below its content, so a header taller than its minimum does not touch its edges', () => {
+    expect(declared(wide, '.pageHeader', 'padding-block')).toBe('var(--space-1)');
+  });
+
+  it("draws an eyebrow link's focus ring inside the link, where the eyebrow's clipping cannot cut it", () => {
+    expect(declared(wide, '.pageHeaderEyebrow', 'overflow')).toBe('hidden');
+    expect(declared(wide, '.pageHeaderEyebrow a:focus-visible', 'outline')).toBe(
+      'var(--border-width-focus) solid var(--ring)',
+    );
+    expect(declared(wide, '.pageHeaderEyebrow a:focus-visible', 'outline-offset')).toBe(
+      'calc(-1 * var(--border-width-focus))',
     );
   });
 
@@ -213,7 +230,7 @@ describe('PageHeader drawn geometry', () => {
 
   it('places the content beside the title in the wide layout', () => {
     expect(declared(wide, '.pageHeaderContent', 'grid-template-areas')).toBe(
-      '"eyebrow eyebrow" "title meta" "description description"',
+      '"eyebrow eyebrow eyebrow" "title meta ." "description description description"',
     );
   });
 

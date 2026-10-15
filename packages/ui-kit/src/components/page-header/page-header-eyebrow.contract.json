@@ -30,7 +30,7 @@
   "invariants": [
     {
       "id": "one-muted-line-above-the-title",
-      "text": "PageHeaderEyebrow sets the meta role (12/16) in --muted-foreground on one line, truncated with an ellipsis, var(--space-1) above the title. It holds text or a plain link - a link inside takes its colour and turns --link-foreground with an underline on hover - and no Breadcrumb trail."
+      "text": "PageHeaderEyebrow sets the meta role (12/16) in --muted-foreground on one line, truncated with an ellipsis, var(--space-1) above the title. It holds text or a plain link - a link inside takes its colour, turns --link-foreground with an underline on hover, and draws its focus ring inside its own box, where the eyebrow's clipping cannot cut it - and no Breadcrumb trail."
     }
   ],
   "anti_patterns": [

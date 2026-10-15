@@ -123,24 +123,28 @@ import {
   </PageHeaderContent>
 </PageHeader>
 
-// A section under the page's own header: an h2, section navigation, actions
-<PageHeader>
-  <PageHeaderContent>
-    <PageHeaderTitle render={<h2 />}>Overview</PageHeaderTitle>
-    <PageHeaderMeta>
-      <Tabs defaultValue="summary">
+// A section under the page's own header: an h2, tabs and actions. One Tabs
+// holds the header and the panels: the list sits in the meta, and the panels
+// it switches follow the header.
+<Tabs defaultValue="summary">
+  <PageHeader>
+    <PageHeaderContent>
+      <PageHeaderTitle render={<h2 />}>Overview</PageHeaderTitle>
+      <PageHeaderMeta>
         <TabsList variant="line" aria-label="Overview sections">
           <TabsTrigger value="summary">Summary</TabsTrigger>
           <TabsTrigger value="delivery">Delivery</TabsTrigger>
         </TabsList>
-      </Tabs>
-    </PageHeaderMeta>
-  </PageHeaderContent>
-  <PageHeaderActions>
-    <Button variant="outline">Edit dashboard</Button>
-    <Button>Export</Button>
-  </PageHeaderActions>
-</PageHeader>
+      </PageHeaderMeta>
+    </PageHeaderContent>
+    <PageHeaderActions>
+      <Button variant="outline">Edit dashboard</Button>
+      <Button>Export</Button>
+    </PageHeaderActions>
+  </PageHeader>
+  <TabsContent value="summary">…</TabsContent>
+  <TabsContent value="delivery">…</TabsContent>
+</Tabs>
 
 // A header set inside a region that already pads its content
 // (styles.header: `--page-header-inset: 0;` in the screen's own module)
@@ -159,21 +163,25 @@ import {
 
 The root is a row: 16 after the leading control, 24 before the actions,
 centred on the drawn minimum height, with the rule under it. The heights
-include the rule, and a header whose content wraps grows past them.
+include the rule, and a header whose content outgrows them grows past them,
+keeping 4 above and below its content so it does not touch its edges.
 
 `PageHeaderContent` is a grid of named areas - the eyebrow above, the title
 and the content beside it on one line, the description under them - so a
 part lands in its place whichever of the others are present. Write them in
 that order: eyebrow, title, meta, description. The title and the content
-beside it are each as wide as their content. When the row runs short, they
+beside it are each as wide as their content, and the rest of the row is an
+empty flexible column, so a long eyebrow or description does not move the
+meta away from the title. When the row runs short, the title and the meta
 share it: content beside the title that is narrower than its share keeps
 its width and the title truncates with an ellipsis, and when both are long
 each gets half.
 
 The eyebrow and the description are on the meta role (12/16), muted, 4 from
-the title. The eyebrow holds text or a plain link - a link takes its colour
-and turns the link colour with an underline on hover. A `Breadcrumb` trail
-does not go there.
+the title. The eyebrow holds text or a plain link - a link takes its colour,
+turns the link colour with an underline on hover, and draws its focus ring
+inside its own box, since the eyebrow clips its overflow for the ellipsis.
+A `Breadcrumb` trail does not go there.
 
 `PageHeaderMeta` sets its children 20 apart, the same 20 that separates it
 from the title. `PageHeaderActions` sets its children 8 apart, does not
@@ -192,8 +200,9 @@ outside them at the default inset of 24 - the narrow layout applies. It is
 a container query on the header itself, not the viewport. The content
 beside the title moves under the description, the actions take a line of
 their own, flush with the start, and the leading control stays on the
-first line beside the text. Each line keeps 8 above and below it, so
-wrapped lines touch neither the header's edges nor each other.
+first line beside the text. Each line keeps 8 above and below it, on top
+of the header's own 4, so wrapped lines touch neither the header's edges
+nor each other.
 
 ## Surface and insets
 

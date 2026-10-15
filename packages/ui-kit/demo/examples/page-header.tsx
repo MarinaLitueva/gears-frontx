@@ -13,6 +13,7 @@ import {
   PageHeaderTitle,
   StatusDot,
   Tabs,
+  TabsContent,
   TabsList,
   TabsTrigger,
   ToggleGroup,
@@ -33,14 +34,15 @@ import {
 import { Measure, Section } from '../shared';
 
 /*
- * Each section is one screen of the Studio prototype, filled the way the
- * prototype fills it: an organization, a workspace, a project, a catalogue
- * component, a list with a view switch, a project tab with its own
- * navigation and actions. The headers sit in a bordered frame so the rule
- * and the side inset read against an edge, the way they do in the shell.
- * The entity headers carry role="group" as the prototype's do: there they
- * sit above the page's main, where a bare header would be a second banner.
+ * Each section is a header the way an application fills it: an account, an
+ * object under its parent, an object with a back link, an object with its
+ * status and actions, a list with a view switch, a section with its own tabs
+ * and actions. The headers sit in a bordered frame so the rule and the side
+ * inset read against an edge, the way they do in a page. The object headers
+ * carry role="group": in an application they sit above the page's main,
+ * where a bare header would be a second banner.
  */
+const panel = { padding: 'var(--space-4) var(--space-6)' } as const;
 
 const frame = {
   border: 'var(--border-width) solid var(--border)',
@@ -152,29 +154,38 @@ export default function PageHeaderExample() {
 
       <Section title="Project tab - section tabs beside the title, three actions">
         <div style={frame}>
-          <PageHeader>
-            <PageHeaderContent>
-              <PageHeaderTitle render={<h2 />}>Overview</PageHeaderTitle>
-              <PageHeaderMeta>
-                <Tabs defaultValue="summary">
+          <Tabs defaultValue="summary">
+            <PageHeader>
+              <PageHeaderContent>
+                <PageHeaderTitle render={<h2 />}>Overview</PageHeaderTitle>
+                <PageHeaderMeta>
                   <TabsList variant="line" aria-label="Project overview sections">
                     <TabsTrigger value="summary">Summary</TabsTrigger>
                     <TabsTrigger value="delivery">Delivery</TabsTrigger>
                     <TabsTrigger value="quality">Quality</TabsTrigger>
                   </TabsList>
-                </Tabs>
-              </PageHeaderMeta>
-            </PageHeaderContent>
-            <PageHeaderActions>
-              <Button size="sm" variant="secondary" end={<ChevronDownIcon />}>
-                Default view
-              </Button>
-              <Button size="sm" variant="outline" icon={<SlidersHorizontalIcon />}>
-                Edit dashboard
-              </Button>
-              <Button size="sm" variant="ghost" icon={<EllipsisIcon />} aria-label="More actions" />
-            </PageHeaderActions>
-          </PageHeader>
+                </PageHeaderMeta>
+              </PageHeaderContent>
+              <PageHeaderActions>
+                <Button size="sm" variant="secondary" end={<ChevronDownIcon />}>
+                  Default view
+                </Button>
+                <Button size="sm" variant="outline" icon={<SlidersHorizontalIcon />}>
+                  Edit dashboard
+                </Button>
+                <Button size="sm" variant="ghost" icon={<EllipsisIcon />} aria-label="More actions" />
+              </PageHeaderActions>
+            </PageHeader>
+            <TabsContent value="summary" style={panel}>
+              Summary panel
+            </TabsContent>
+            <TabsContent value="delivery" style={panel}>
+              Delivery panel
+            </TabsContent>
+            <TabsContent value="quality" style={panel}>
+              Quality panel
+            </TabsContent>
+          </Tabs>
         </div>
       </Section>
 
@@ -192,7 +203,7 @@ export default function PageHeaderExample() {
         </div>
       </Section>
 
-      {/* The catalogue's section header: no rule and no inset of its own,
+      {/* A section header with no rule and no inset of its own,
           for a header inside a region that already pads its content. The
           rule is transparent, not gone, so this header is as tall as the
           one above it. */}
@@ -253,25 +264,31 @@ export default function PageHeaderExample() {
           of their own, though the window is wide. */}
       <Section title="Narrow container">
         <div style={{ ...frame, maxWidth: '37.5rem' }}>
-          <PageHeader>
-            <PageHeaderContent>
-              <PageHeaderTitle render={<h2 />}>Artifacts</PageHeaderTitle>
-              <PageHeaderMeta>
-                <Tabs defaultValue="files">
+          <Tabs defaultValue="files">
+            <PageHeader>
+              <PageHeaderContent>
+                <PageHeaderTitle render={<h2 />}>Artifacts</PageHeaderTitle>
+                <PageHeaderMeta>
                   <TabsList variant="line" aria-label="Artifact views">
                     <TabsTrigger value="files">Files</TabsTrigger>
                     <TabsTrigger value="graph">Graph view</TabsTrigger>
                   </TabsList>
-                </Tabs>
-              </PageHeaderMeta>
-            </PageHeaderContent>
-            <PageHeaderActions>
-              <Button size="sm" variant="ghost" icon={<EllipsisIcon />} aria-label="Artifact view actions" />
-              <Button size="sm" variant="outline">
-                Upload documents
-              </Button>
-            </PageHeaderActions>
-          </PageHeader>
+                </PageHeaderMeta>
+              </PageHeaderContent>
+              <PageHeaderActions>
+                <Button size="sm" variant="ghost" icon={<EllipsisIcon />} aria-label="Artifact view actions" />
+                <Button size="sm" variant="outline">
+                  Upload documents
+                </Button>
+              </PageHeaderActions>
+            </PageHeader>
+            <TabsContent value="files" style={panel}>
+              Files panel
+            </TabsContent>
+            <TabsContent value="graph" style={panel}>
+              Graph panel
+            </TabsContent>
+          </Tabs>
         </div>
       </Section>
     </>
