@@ -321,8 +321,9 @@ Rules for generated code:
   a section (PageHeader/PageHeaderLeading/PageHeaderContent/
   PageHeaderEyebrow/PageHeaderTitle/PageHeaderMeta/PageHeaderDescription/
   PageHeaderActions); no Base UI primitive; `size` sm|default|lg (56/64/80
-  minimum height), `border={false}` keeps the rule's height transparent;
-  `PageHeaderTitle` is an `h1` (`render={<h2 />}` for a section) with
+  minimum height), `border={false}` paints the rule transparent, so the
+  height stays the same; `PageHeaderTitle` is an `h1` (`render={<h2 />}`
+  for a section) with
   `typography` heading|display; Leading, Meta and Actions take any content;
   `--page-header-inset` sets the side inset (default `--space-6`); a header
   kept above `main` passes `role="group"` so it is not a second banner.

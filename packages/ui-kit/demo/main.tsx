@@ -179,9 +179,9 @@ function baseSlug(slug: string): string {
 /** Base slugs with no shadcn/ui docs page under /docs/components/base/ -
  *  a real 404 (server status, not a client soft-404), checked directly
  *  against the live site rather than assumed. `status-dot`, `data-grid`
- *  and `page-header` have no shadcn counterpart (`data-grid` is the kit's
- *  own grid, `page-header` the Studio catalogue's page header, neither a
- *  shadcn part); `contracts-demo` and `eval-overview` are demo-only routes
+ *  and `page-header` have no shadcn counterpart (`data-grid` and
+ *  `page-header` are the kit's own grid and page header, neither a shadcn
+ *  part); `contracts-demo` and `eval-overview` are demo-only routes
  *  that ride the same examples/*.tsx glob without porting a shadcn part.
  *  Every other slug here, including ones that looked unlikely, resolved
  *  ("direction", "date-picker"/"data-table" all have real pages). */
