@@ -62,7 +62,6 @@
   grid-template-areas: "eyebrow eyebrow eyebrow" "title meta ." "description description description";
   grid-template-columns: minmax(0, max-content) minmax(0, max-content) minmax(0, 1fr);
   align-items: center;
-  column-gap: var(--space-5);
 }
 
 .pageHeaderEyebrow {
@@ -124,6 +123,7 @@
   min-width: 0;
   align-items: center;
   gap: var(--space-5);
+  margin-inline-start: var(--space-5);
 }
 
 .pageHeaderDescription {
@@ -164,6 +164,7 @@
 
   .pageHeaderMeta {
     margin-top: var(--space-2);
+    margin-inline-start: 0;
   }
 
   .pageHeaderActions {

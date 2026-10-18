@@ -72,7 +72,12 @@ import {
   PageHeaderLeading,
   PageHeaderMeta,
   PageHeaderTitle,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from '@gears-frontx/ui-kit';
+import { ArrowLeftIcon, ArrowLeftRightIcon } from 'lucide-react';
 
 // An object's page: the tall header with the Page Title role and a link to
 // its parent, set above the page's main on the card surface
@@ -184,7 +189,8 @@ inside its own box, since the eyebrow clips its overflow for the ellipsis.
 A `Breadcrumb` trail does not go there.
 
 `PageHeaderMeta` sets its children 20 apart, the same 20 that separates it
-from the title. `PageHeaderActions` sets its children 8 apart, does not
+from the title. That 20 is the meta's own margin, not a gap of the grid,
+so a header without a meta gives its title the whole row. `PageHeaderActions` sets its children 8 apart, does not
 shrink, and wraps its controls onto further lines, 8 apart, when they do
 not fit. Both take any content: buttons, menus, badges, a status, a toggle
 group, section navigation.

@@ -40,7 +40,8 @@ import { Measure, Section } from '../shared';
  * and actions. The headers sit in a bordered frame so the rule and the side
  * inset read against an edge, the way they do in a page. The object headers
  * carry role="group": in an application they sit above the page's main,
- * where a bare header would be a second banner.
+ * where a bare header would be a second banner. Every section stands for a
+ * page of its own, hence an h1 in each object header.
  */
 const panel = { padding: 'var(--space-4) var(--space-6)' } as const;
 
@@ -51,7 +52,7 @@ const frame = {
 } as const;
 
 export default function PageHeaderExample() {
-  const [view, setView] = useState<string[]>(['list']);
+  const [view, setView] = useState('list');
 
   return (
     <>
@@ -107,7 +108,7 @@ export default function PageHeaderExample() {
 
       <Section title="Component - status and summary beside the title, two actions">
         <div style={frame}>
-          <PageHeader size="sm">
+          <PageHeader size="sm" role="group">
             <PageHeaderContent>
               <PageHeaderTitle>Account Management</PageHeaderTitle>
               <PageHeaderMeta>
@@ -133,7 +134,15 @@ export default function PageHeaderExample() {
         <div style={frame}>
           <PageHeader>
             <PageHeaderLeading>
-              <ToggleGroup aria-label="Projects view" variant="outline" value={view} onValueChange={setView}>
+              <ToggleGroup
+                aria-label="Projects view"
+                size="sm"
+                spacing={0}
+                variant="outline"
+                iconOnly
+                value={[view]}
+                onValueChange={([next]) => next && setView(next)}
+              >
                 <ToggleGroupItem value="list" aria-label="Table view">
                   <ListIcon />
                 </ToggleGroupItem>

@@ -31,9 +31,11 @@ invariants:
     text: >-
       PageHeaderMeta is a flex row that centers its children vertically and
       spaces them var(--space-5) apart, var(--space-5) after the title. It is
-      as wide as its content; when the row runs short it shares the row with
-      the title, keeping its width while it is narrower than its share, so
-      it does not paint over the actions.
+      as wide as its content; when the row runs short its box shares the row
+      with the title, keeping its width while it is narrower than its share.
+      Content that cannot wrap or shrink overflows the box, so a tab list or
+      a nav that can grow goes in a block with overflow-x auto (see
+      PageHeader's anti-patterns).
   - id: moves-under-the-description-when-narrow
     text: >-
       When the header's width inside its side insets is below 64rem it moves

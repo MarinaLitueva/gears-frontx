@@ -176,7 +176,7 @@ describe('PageHeader drawn geometry', () => {
   });
 
   it('spaces the content beside the title 20 apart and the actions 8 apart', () => {
-    expect(declared(wide, '.pageHeaderContent', 'column-gap')).toBe('var(--space-5)');
+    expect(declared(wide, '.pageHeaderMeta', 'margin-inline-start')).toBe('var(--space-5)');
     expect(declared(wide, '.pageHeaderMeta', 'gap')).toBe('var(--space-5)');
     expect(declared(wide, '.pageHeaderActions', 'gap')).toBe('var(--space-2)');
   });
@@ -210,6 +210,11 @@ describe('PageHeader drawn geometry', () => {
     );
   });
 
+  it('puts no gap between the columns, so an empty meta or flexible column does not shorten the title', () => {
+    expect(declared(wide, '.pageHeaderContent', 'column-gap')).toBeUndefined();
+    expect(declared(wide, '.pageHeaderContent', 'gap')).toBeUndefined();
+  });
+
   it('keeps 4 above and below its content, so a header taller than its minimum does not touch its edges', () => {
     expect(declared(wide, '.pageHeader', 'padding-block')).toBe('var(--space-1)');
   });
@@ -239,6 +244,7 @@ describe('PageHeader drawn geometry', () => {
     expect(declared(narrow, '.pageHeaderContent', 'grid-template-areas')).toBe(
       '"eyebrow" "title" "description" "meta"',
     );
+    expect(declared(narrow, '.pageHeaderMeta', 'margin-inline-start')).toBe('0');
     expect(declared(narrow, '.pageHeaderActions', 'flex-basis')).toBe('100%');
     expect(declared(narrow, '.pageHeaderActions', 'margin-inline-start')).toBe('0');
   });
